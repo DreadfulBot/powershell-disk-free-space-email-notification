@@ -1,10 +1,10 @@
 # credentials stuff here
 $smtp = @{
-    Host = ""
-    Port = ""
+    Host     = ""
+    Port     = ""
     Username = ""
     Password = ""
-    From = ""
+    From     = ""
 }
 
 # mail settings
@@ -93,12 +93,11 @@ Function writeHtmlFooter {
 # if minFreeDiskPercentageToNotify is set, it will be used in logic
 Function setPendingEmailSend {
     param($devId, $freePercent)
-    if(
-    ($minFreeDiskPercentageToNotify -gt 0) -and
-    ($freePercent -lt $minFreeDiskPercentageToNotify) -and
-    ($devId -eq "C:")
-    )
-    {
+    if (
+        ($minFreeDiskPercentageToNotify -gt 0) -and
+        ($freePercent -lt $minFreeDiskPercentageToNotify) -and
+        ($devId -eq "C:")
+    ) {
         return $true
     }
 }
@@ -156,7 +155,7 @@ Function sendEmail {
     $msg.From = $smtpServer.From
     $msg.Subject = $subject 
 
-    foreach($address in $to) {
+    foreach ($address in $to) {
         $msg.To.Add($address)
     }
 
